@@ -1,0 +1,2 @@
+class Hairservice < ApplicationRecord
+end
