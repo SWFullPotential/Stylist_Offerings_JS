@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Hairstylist.create(name: "Samantha", year_licensed: 2013)
+
+# not yet seeded. 
+# Hairservice.create(service_name: "haircut")
+# Hairservice.create(service_name: "blow-out")
+# Hairservice.create(service_name: "full highlight")
+# Hairservice.create(service_name: "partial highlight")
