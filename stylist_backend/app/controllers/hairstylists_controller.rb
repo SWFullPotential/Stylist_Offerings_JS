@@ -1,5 +1,5 @@
 class HairstylistsController < ApplicationController
-  before_action :set_hairstylist, only: [:show, :update, :destroy]
+  before_action :set_hairstylist, only: [:show, :update, :destroy, :addService]
 
   # GET /hairstylists
   def index
@@ -36,6 +36,10 @@ class HairstylistsController < ApplicationController
   # DELETE /hairstylists/1
   def destroy
     @hairstylist.destroy
+  end
+  
+  def addService
+    #may need this method. 
   end
 
   private
