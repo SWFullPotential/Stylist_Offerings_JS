@@ -4,7 +4,7 @@ class CreateHairstylists < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :year_licensed
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

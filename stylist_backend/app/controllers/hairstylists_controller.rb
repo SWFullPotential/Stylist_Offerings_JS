@@ -5,7 +5,7 @@ class HairstylistsController < ApplicationController
   def index
     @hairstylists = Hairstylist.all
 
-    render json: @hairstylists
+    render json: @hairstylists, include: [:hairservices]
   end
 
   # GET /hairstylists/1

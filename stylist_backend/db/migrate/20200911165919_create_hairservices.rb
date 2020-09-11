@@ -5,7 +5,7 @@ class CreateHairservices < ActiveRecord::Migration[6.0]
       t.integer :price
       t.integer :hairstylist_id
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

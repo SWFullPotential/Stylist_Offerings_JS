@@ -16,15 +16,11 @@ ActiveRecord::Schema.define(version: 2020_09_11_165919) do
     t.string "service_name"
     t.integer "price"
     t.integer "hairstylist_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "hairstylists", force: :cascade do |t|
     t.string "name"
     t.integer "year_licensed"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
