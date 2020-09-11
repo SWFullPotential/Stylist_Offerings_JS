@@ -21,11 +21,11 @@ function fetchStylists() {
 
 //where in HTML do we want this--MAIN --set main const....consts at top
 //how do you want card to look....
-function stylistCards(){
+function stylistCards(hairstylist){
     let div = document.createElement('div')
-        div.className = "card"
-        div.id = hairstylist.id
-        div.setAttribute("data-id", hairstylist.id)
+    div.className = "card"
+    div.id = hairstylist.id
+    div.setAttribute("data-id", hairstylist.id)
     let stylistName = document.createElement('h3')
         stylistName.textContent = hairstylist.name 
     let ul = document.createElement('ul')
