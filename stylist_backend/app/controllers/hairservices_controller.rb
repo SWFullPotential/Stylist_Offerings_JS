@@ -51,4 +51,3 @@ class HairservicesController < ApplicationController
 end
 
 
-#hey there 
