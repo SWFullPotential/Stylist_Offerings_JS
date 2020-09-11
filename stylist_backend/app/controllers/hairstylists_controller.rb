@@ -10,7 +10,7 @@ class HairstylistsController < ApplicationController
 
   # GET /hairstylists/1
   def show
-    render json: @hairstylist
+    render json: @hairstylist, include: [:hairservices]
   end
 
   # POST /hairstylists
