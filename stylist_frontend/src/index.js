@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 function fetchStylists() {
     fetch(HAIRSTYLIST_URL)
     .then(resp => resp.json())
-    .then(object => object.forEach(stylistCards))
+    .then(object => object.forEach(hairstylist => stylistCards(hairstylist)))
 };
 
 //where in HTML do we want this--MAIN --set main const....consts at top
