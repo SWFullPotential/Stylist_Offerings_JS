@@ -32,14 +32,34 @@ function stylistCards(hairstylist){
         servicesLi(hairstylist, ul)
     let addBtn = document.createElement('button')
         addBtn.className = "add"
-    //will need to add collapsable form here...
+    //will need to add collapsable form here...when working on the next feature...
     div.appendChild(stylistName)
     div.appendChild(addBtn)
     div.appendChild(ul)
     main.appendChild(div)
 };
 
-
-function servicesLi(){
-
+//build out list for services. 
+function servicesLi(hairstylist, ul){
+    ul.innerHTML = ""
+    let li = document.createElement('li')
+    hairstylist.hairservices.forEach(hairservice => {
+        let deleteBtn = document.createElement('button')
+        let editBtn = document.createElement('button')
+        li.textContent = `${hairservice.service_name} $(${hairservice.price})`
+        deleteBtn.className = "delete"
+        deleteBtn.setAttribute("data-service-id", hairservice.id);
+        deleteBtn.innerText = "Delete Service"
+        //add event listener. 
+        deleteBtn.addEventListener('click', () =>{
+            deleteService(deleteBtn.getAttribute("data-service-id"))
+        })
+        editBtn.className = "edit"
+        editBtn.setAttribute("edit-service-id", hairservice.id);
+        editBtn.innerText = "Edit Service"
+        //add event listener. 
+        li.appendChild(deleteBtn)
+        li.appendChild(editBtn)
+        ul.appendChild(li)
+    })
 };
