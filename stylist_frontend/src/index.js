@@ -63,3 +63,26 @@ function servicesLi(hairstylist, ul){
         ul.appendChild(li)
     })
 };
+
+function deleteService(id){
+    let serviceId = `${SERVICES_URL}/${id}`
+    fetch(serviceId, {
+        method: "DELETE", 
+        headers:{
+            "Content-Type": "application/json", 
+            "Accept": "application/json"
+        }
+    })
+    .then(function(resp){
+        return resp.json();
+    })
+    .then(function(object){
+        let card = document.getElementById(object.id)
+        let ul = card.querySelector('ul')
+        servicesLi(object, ul)
+    })
+    .catch(function(error){
+        alert("An Error has Occured");
+        console.log(error.message);
+    });
+};
