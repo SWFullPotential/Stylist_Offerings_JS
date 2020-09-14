@@ -42,8 +42,8 @@ function stylistCards(hairstylist){
 //build out list for services. 
 function servicesLi(hairstylist, ul){
     ul.innerHTML = ""
-    let li = document.createElement('li')
     hairstylist.hairservices.forEach(hairservice => {
+        let li = document.createElement('li')
         let deleteBtn = document.createElement('button')
         let editBtn = document.createElement('button')
         li.textContent = `${hairservice.service_name} $(${hairservice.price})`
