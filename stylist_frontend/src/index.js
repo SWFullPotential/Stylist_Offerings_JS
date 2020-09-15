@@ -106,11 +106,10 @@ function serviceFormSubmission(e){
     })
     .then(resp => resp.json())
     .then(service => {
-        debugger
+        // debugger
         let s = new Hairservice(service.id, service.name, service.price, service.hairstylist_id)
-        let hairstylist = Hairstylist.find_by_id(service.hairstylist_id)
-
-        stylistCards(hairstylist)
+        // let hairstylist = Hairstylist.find_by_id(service.hairstylist_id)
+        this.location.reload();
     })
 }
 
