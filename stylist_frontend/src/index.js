@@ -18,44 +18,69 @@ function fetchStylists() {
     }))
 };
 
+
+
+
+
+
 function stylistCards(hairstylist){
-    let div = document.createElement('div')
-    div.className = "card"
-    div.id = hairstylist.id
-    div.setAttribute("data-id", hairstylist.id)
-    let stylistName = document.createElement('h2')
-    stylistName.textContent = `${hairstylist.name}, licensed since: ${hairstylist.year_licensed}.` 
-    let servicesOffered = document.createElement('h3')
-    servicesOffered.textContent = "Services Offered:"
-    let ul = document.createElement('ul')
-    servicesLi(hairstylist, ul)
-    let serviceDiv = document.createElement('div')
-    serviceDiv.id = "service-form"
-    serviceDiv.setAttribute("stylist-id", hairstylist.id)
-    div.appendChild(stylistName)
-    div.appendChild(serviceDiv)
-    div.appendChild(servicesOffered)
-    div.appendChild(ul)
-    main.appendChild(div)
+    let sCards = document.querySelector(`main`)
+    sCards.innerHTML +=
+    `
+    <div class="card" id="${hairstylist.id}" data-id="${hairstylist.id}">
+    <h2>"${hairstylist.name}, licensed since: ${hairstylist.year_licensed}."</h2>
+    <div id="service-form" stylist-id="${hairstylist.id}">
+    <br>
+    </div>
+    <h3>Services Offered:</h3>
+    <ul>${servicesLi(hairstylist, ul)}</ul>
+    </div>
+    `
+    
+    // let div = document.createElement('div')
+    // div.className = "card"
+    // div.id = hairstylist.id
+    // div.setAttribute("data-id", hairstylist.id)
+    // let stylistName = document.createElement('h2')
+    // stylistName.textContent = `${hairstylist.name}, licensed since: ${hairstylist.year_licensed}.` 
+    // let servicesOffered = document.createElement('h3')
+    // servicesOffered.textContent = "Services Offered:"
+    // let ul = document.createElement('ul')
+    // servicesLi(hairstylist, ul)
+    // let serviceDiv = document.createElement('div')
+    // serviceDiv.id = "service-form"
+    // serviceDiv.setAttribute("stylist-id", hairstylist.id)
+    // div.appendChild(stylistName)
+    // div.appendChild(serviceDiv)
+    // div.appendChild(servicesOffered)
+    // div.appendChild(ul)
+    // main.appendChild(div)
     createServiceForm(hairstylist)
 };
 
 function servicesLi(hairstylist, ul){
-    ul.innerHTML = ""
+    let sl = document.querySelector(`ul`)
     hairstylist.hairservices.forEach(hairservice => {
-        let li = document.createElement('li')
-        let deleteBtn = document.createElement('button')
-        let editBtn = document.createElement('button')
-        li.textContent = `${hairservice.service_name} $${hairservice.price}`
-        deleteBtn.className = "delete"
-        deleteBtn.setAttribute("data-service-id", hairservice.id);
-        deleteBtn.innerText = "Delete Service"
-        //add event listener. 
-        deleteBtn.addEventListener('click', () =>{
-            deleteService(deleteBtn.getAttribute("data-service-id"))
-        })
-        li.appendChild(deleteBtn)
-        ul.appendChild(li)
+        sl.innerHTML +=
+        `
+        <li>
+            "${hairservice.service_name} $${hairservice.price}"
+            <button class="delete" data-service-id="${hairservice.id}">Delete Service</button>
+        </li>
+        `
+        // let li = document.createElement('li')
+        // let deleteBtn = document.createElement('button')
+        // let editBtn = document.createElement('button')
+        // li.textContent = `${hairservice.service_name} $${hairservice.price}`
+        // deleteBtn.className = "delete"
+        // deleteBtn.setAttribute("data-service-id", hairservice.id);
+        // deleteBtn.innerText = "Delete Service"
+        // //add event listener. 
+        // deleteBtn.addEventListener('click', () =>{
+        //     deleteService(deleteBtn.getAttribute("data-service-id"))
+        // })
+        // li.appendChild(deleteBtn)
+        // ul.appendChild(li)
     })
 };
 
@@ -102,7 +127,6 @@ function serviceFormSubmission(e){
             let hs = Hairservice.create(service.id, service.service_name, service.price, service.hairstylist_id)
             let hairstylist = Hairstylist.all.find(stylist => stylist.id == service.hairstylist_id)
             hairstylist.hairservices.push(hs)
-            // let ul = document.querySelector(`div#${hairstylist.id} ul`)
             let div = document.getElementById(`${hairstylist.id}`)
             let ul = div.querySelector(`ul`)
 
