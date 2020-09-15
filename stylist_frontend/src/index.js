@@ -18,8 +18,9 @@ function fetchStylists() {
     .then(resp => resp.json())
     // .then(object => object.forEach(hairstylist => stylistCards(hairstylist)))
     .then(object => object.forEach(stylist => {
-        // let hairStylist = Hairstylist.create(stylist.id, stylist.name, stylist.year_licensed)
-        stylistCards(stylist)
+        let hairStylist = Hairstylist.create(stylist.id, stylist.name, stylist.year_licensed, stylist.hairservices)
+        // debugger
+        stylistCards(hairStylist)
     }))
     // .then(object => 
     //     {
@@ -69,11 +70,7 @@ function servicesLi(hairstylist, ul){
         deleteBtn.addEventListener('click', () =>{
             deleteService(deleteBtn.getAttribute("data-service-id"))
         })
-        // editBtn.className = "edit"
-        // editBtn.setAttribute("edit-service-id", hairservice.id);
-        // editBtn.innerText = "Edit Service"
         li.appendChild(deleteBtn)
-        // li.appendChild(editBtn)
         ul.appendChild(li)
     })
 };
@@ -119,29 +116,16 @@ function serviceFormSubmission(e){
     })
     .then(resp => resp.json())
     .then(service => {
-            Hairservice.create(service.id, service.service_name, service.price, service.hairstylist_id)
+            let hs = Hairservice.create(service.id, service.service_name, service.price, service.hairstylist_id)
             let hairstylist = Hairstylist.all.find(stylist => stylist.id == service.hairstylist_id)
-            // debugger
-            stylistCards(hairstylist)
+            hairstylist.hairservices.push(hs)
+            // let ul = document.querySelector(`div#${hairstylist.id} ul`)
+            let div = document.getElementById(`${hairstylist.id}`)
+            let ul = div.querySelector(`ul`)
 
 
-
-
-
-
-        // .then(program => {
-        //     debugger;
-        //     Program.create(program.id, program.title, program.split, program.length, program.goal, program.weeklyVolume, program.workoutsPerWeek, program.startdate)
-        //     displayProgram(Program.all.last)
-        // })
-        // debugger
-        // let s = new Hairservice(service.id, service.service_name, service.price, service.hairstylist_id)
-        // debugger
-        // let hairstylist = Hairstylist.find(s.hairstylist_id)
-        // console.log(stylistCards(Hairstylist.all));
-        // this.location.reload();
+            servicesLi(hairstylist, ul);
     })
-    // console.log("hey there", this)
 }
 
 function deleteService(id){
