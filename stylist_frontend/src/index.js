@@ -1,7 +1,3 @@
-/*
-    add URLs, fetch data, create cards to populate the stylist and services in. 
-
-*/
 const BASE_URL = "http://localhost:3000"
 const HAIRSTYLIST_URL = `${BASE_URL}/hairstylists`
 const SERVICES_URL = `${BASE_URL}/hairservices`
@@ -12,25 +8,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
     fetchStylists()
 });
 
-//should be called after DOMContentLoads...
 function fetchStylists() {
     fetch(HAIRSTYLIST_URL)
     .then(resp => resp.json())
-    // .then(object => object.forEach(hairstylist => stylistCards(hairstylist)))
     .then(object => object.forEach(stylist => {
         let hairStylist = Hairstylist.create(stylist.id, stylist.name, stylist.year_licensed, stylist.hairservices)
         // debugger
         stylistCards(hairStylist)
     }))
-    // .then(object => 
-    //     {
-        //     for(const hairstylist of hairstylists){
-            //         let stylist = Hairstylist.create(hairstylist.id, hairstylist.name, hairstylist.year_licensed)
-            //         stylist.stylistCards()
-            //     }
-            // })
-            // object.forEach(hairstylist => {stylist = Hairstylist.create(object.id, object.name, object.year_licensed)
-            // stylistCards(hairstylist)}))
 };
 
 function stylistCards(hairstylist){
@@ -47,7 +32,6 @@ function stylistCards(hairstylist){
     let serviceDiv = document.createElement('div')
     serviceDiv.id = "service-form"
     serviceDiv.setAttribute("stylist-id", hairstylist.id)
-    //will need to add collapsable form here...when working on the next feature...
     div.appendChild(stylistName)
     div.appendChild(serviceDiv)
     div.appendChild(servicesOffered)
@@ -77,7 +61,6 @@ function servicesLi(hairstylist, ul){
 
 function createServiceForm(hairstylist){
     let serviceDiv = document.getElementById("service-form")
-    // debugger
     serviceDiv.innerHTML +=
     `
     <h4>Add Service:</h4>
@@ -92,7 +75,7 @@ function createServiceForm(hairstylist){
     let serviceForm = document.getElementById("add-service-form")
     serviceForm.addEventListener('submit', serviceFormSubmission)
 }
-//serviceFormSubmission needs help 
+
 function serviceFormSubmission(e){
     e.preventDefault()
     let name = document.getElementById("service_name").value
@@ -122,7 +105,6 @@ function serviceFormSubmission(e){
             // let ul = document.querySelector(`div#${hairstylist.id} ul`)
             let div = document.getElementById(`${hairstylist.id}`)
             let ul = div.querySelector(`ul`)
-
 
             servicesLi(hairstylist, ul);
     })
