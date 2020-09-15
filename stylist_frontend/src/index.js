@@ -66,31 +66,34 @@ function servicesLi(hairstylist, ul){
 };
 
 function createServiceForm(hairstylist){
-    let serviceForm = document.getElementById("service-form")
+    let serviceDiv = document.getElementById("service-form")
     // debugger
-    serviceForm.innerHTML +=
+    serviceDiv.innerHTML +=
     `
     <h1>Add Service:</h1>
-    <form>
-        Service Name: <input type="text id="service_name"> <br>
+    <form id="add-service-form">
+        Service Name: <input type="text" id="service_name"> <br>
         Price: $<input type="integer" id="price"><br>
         Stylist Id: <input type="integer" id="hairstylist_id" value="${hairstylist.id}" disabled><br>            
         <input type="submit" value="Add Service">
     </form>
     <br>
     `
+    let serviceForm = document.getElementById("add-service-form")
     serviceForm.addEventListener('submit', serviceFormSubmission)
 }
 //serviceFormSubmission needs help 
-function serviceFormSubmission(){
+function serviceFormSubmission(e){
     e.preventDefault()
     let name = document.getElementById("service_name").value
     let price = document.getElementById("price").value 
     let hairstylist_id = document.getElementById("hairstylist_id").value 
     let service = {
-        name: name, 
-        price: price, 
-        hairstylist_id: hairstylist_id
+        hairservice: {
+            service_name: name, 
+            price: price, 
+            hairstylist_id: hairstylist_id
+        }
     }
     fetch(SERVICES_URL, {
         method: "POST",
@@ -98,13 +101,15 @@ function serviceFormSubmission(){
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-    
+        
         body: JSON.stringify(service)
     })
     .then(resp => resp.json())
     .then(service => {
+        debugger
         let s = new Hairservice(service.id, service.name, service.price, service.hairstylist_id)
         let hairstylist = Hairstylist.find_by_id(service.hairstylist_id)
+
         stylistCards(hairstylist)
     })
 }
