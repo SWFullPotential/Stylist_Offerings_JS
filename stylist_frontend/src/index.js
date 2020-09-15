@@ -82,6 +82,34 @@ function createServiceForm(hairstylist){
     serviceForm.addEventListener('submit', serviceFormSubmission)
 }
 
+function serviceFormSubmission(){
+    e.preventDefault()
+    let name = document.getElementById("service_name").value
+    let price = document.getElementById("price").value 
+    let hairstylist_id = document.getElementById("hairstylist_id").value 
+    let service = {
+        name: name, 
+        price: price, 
+        hairstylist_id: hairstylist_id
+    }
+    fetch(SERVICES_URL, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    
+        body: JSON.stringify(service)
+    })
+    .then(resp => resp.json())
+    .then(service => {
+        let s = new Hairservice(service.id, service.name, service.price, service.hairstylist_id)
+        let hairstylist = Hairstylist.find_by_id(service.hairstylist_id)
+        debugger
+        stylistCards(hairstylist)
+    })
+}
+
 function deleteService(id){
     let serviceId = `${SERVICES_URL}/${id}`
     fetch(serviceId, {
