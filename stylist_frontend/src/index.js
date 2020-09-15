@@ -27,16 +27,18 @@ function stylistCards(hairstylist){
     div.id = hairstylist.id
     div.setAttribute("data-id", hairstylist.id)
     let stylistName = document.createElement('h3')
-        stylistName.textContent = hairstylist.name 
+        stylistName.textContent = `${hairstylist.id} - ${hairstylist.name}` 
     let ul = document.createElement('ul')
         servicesLi(hairstylist, ul)
-    let addBtn = document.createElement('button')
-        addBtn.className = "add"
+    let serviceDiv = document.createElement('div')
+    serviceDiv.id = "service-form"
+    serviceDiv.setAttribute("stylist-id", hairstylist.id)
     //will need to add collapsable form here...when working on the next feature...
     div.appendChild(stylistName)
-    div.appendChild(addBtn)
+    div.appendChild(serviceDiv)
     div.appendChild(ul)
     main.appendChild(div)
+    createServiceForm(hairstylist)
 };
 
 //build out list for services. 
@@ -46,7 +48,7 @@ function servicesLi(hairstylist, ul){
         let li = document.createElement('li')
         let deleteBtn = document.createElement('button')
         let editBtn = document.createElement('button')
-        li.textContent = `${hairservice.service_name} $(${hairservice.price})`
+        li.textContent = `${hairservice.service_name} $${hairservice.price}`
         deleteBtn.className = "delete"
         deleteBtn.setAttribute("data-service-id", hairservice.id);
         deleteBtn.innerText = "Delete Service"
@@ -57,12 +59,28 @@ function servicesLi(hairstylist, ul){
         editBtn.className = "edit"
         editBtn.setAttribute("edit-service-id", hairservice.id);
         editBtn.innerText = "Edit Service"
-        //add event listener. 
         li.appendChild(deleteBtn)
         li.appendChild(editBtn)
         ul.appendChild(li)
     })
 };
+
+function createServiceForm(hairstylist){
+    let serviceForm = document.getElementById("service-form")
+    // debugger
+    serviceForm.innerHTML +=
+    `
+    <h1>Add Service:</h1>
+    <form>
+        Service Name: <input type="text id="service_name"> <br>
+        Price: $<input type="integer" id="price"><br>
+        Stylist Id: <input type="integer" id="hairstylist_id" value="${hairstylist.id}"><br>            
+        <input type="submit" value="Add Service">
+    </form>
+    <br>
+    `
+    serviceForm.addEventListener('submit', serviceFormSubmission)
+}
 
 function deleteService(id){
     let serviceId = `${SERVICES_URL}/${id}`
@@ -77,12 +95,7 @@ function deleteService(id){
         return resp.json();
     })
     .then(function(object){
-        let card = document.getElementById(object.id)
-        let ul = card.querySelector('ul')
-        servicesLi(object, ul)
+        let service = document.getElementById(object.id)
     })
-    .catch(function(error){
-        alert("An Error has Occured");
-        console.log(error.message);
-    });
+    this.location.reload();
 };
