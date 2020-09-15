@@ -37,8 +37,10 @@ function stylistCards(hairstylist){
     div.className = "card"
     div.id = hairstylist.id
     div.setAttribute("data-id", hairstylist.id)
-    let stylistName = document.createElement('h3')
+    let stylistName = document.createElement('h2')
     stylistName.textContent = `${hairstylist.name}, licensed since: ${hairstylist.year_licensed}.` 
+    let servicesOffered = document.createElement('h3')
+    servicesOffered.textContent = "Services Offered:"
     let ul = document.createElement('ul')
     servicesLi(hairstylist, ul)
     let serviceDiv = document.createElement('div')
@@ -47,6 +49,7 @@ function stylistCards(hairstylist){
     //will need to add collapsable form here...when working on the next feature...
     div.appendChild(stylistName)
     div.appendChild(serviceDiv)
+    div.appendChild(servicesOffered)
     div.appendChild(ul)
     main.appendChild(div)
     createServiceForm(hairstylist)
@@ -80,7 +83,7 @@ function createServiceForm(hairstylist){
     // debugger
     serviceDiv.innerHTML +=
     `
-    <h1>Add Service:</h1>
+    <h4>Add Service:</h4>
     <form id="add-service-form">
         Service Name: <input type="text" id="service_name"> <br>
         Price: $<input type="integer" id="price"><br>
