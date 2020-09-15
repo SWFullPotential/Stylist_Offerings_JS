@@ -105,7 +105,6 @@ function serviceFormSubmission(){
     .then(service => {
         let s = new Hairservice(service.id, service.name, service.price, service.hairstylist_id)
         let hairstylist = Hairstylist.find_by_id(service.hairstylist_id)
-        debugger
         stylistCards(hairstylist)
     })
 }
