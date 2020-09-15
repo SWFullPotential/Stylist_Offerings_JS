@@ -16,20 +16,31 @@ document.addEventListener('DOMContentLoaded', (e) => {
 function fetchStylists() {
     fetch(HAIRSTYLIST_URL)
     .then(resp => resp.json())
-    .then(object => object.forEach(hairstylist => stylistCards(hairstylist)))
+    // .then(object => object.forEach(hairstylist => stylistCards(hairstylist)))
+    .then(object => object.forEach(stylist => {
+        let hairStylist = Hairstylist.create(stylist.id, stylist.name, stylist.year_licensed)
+        stylistCards(hairStylist)
+    }))
+    // .then(object => 
+    //     {
+        //     for(const hairstylist of hairstylists){
+            //         let stylist = Hairstylist.create(hairstylist.id, hairstylist.name, hairstylist.year_licensed)
+            //         stylist.stylistCards()
+            //     }
+            // })
+            // object.forEach(hairstylist => {stylist = Hairstylist.create(object.id, object.name, object.year_licensed)
+            // stylistCards(hairstylist)}))
 };
 
-//where in HTML do we want this--MAIN --set main const....consts at top
-//how do you want card to look....
 function stylistCards(hairstylist){
     let div = document.createElement('div')
     div.className = "card"
     div.id = hairstylist.id
     div.setAttribute("data-id", hairstylist.id)
     let stylistName = document.createElement('h3')
-        stylistName.textContent = `${hairstylist.id} - ${hairstylist.name}` 
+    stylistName.textContent = `${hairstylist.id} - ${hairstylist.name}` 
     let ul = document.createElement('ul')
-        servicesLi(hairstylist, ul)
+    servicesLi(hairstylist, ul)
     let serviceDiv = document.createElement('div')
     serviceDiv.id = "service-form"
     serviceDiv.setAttribute("stylist-id", hairstylist.id)
@@ -41,7 +52,6 @@ function stylistCards(hairstylist){
     createServiceForm(hairstylist)
 };
 
-//build out list for services. 
 function servicesLi(hairstylist, ul){
     ul.innerHTML = ""
     hairstylist.hairservices.forEach(hairservice => {
@@ -56,11 +66,11 @@ function servicesLi(hairstylist, ul){
         deleteBtn.addEventListener('click', () =>{
             deleteService(deleteBtn.getAttribute("data-service-id"))
         })
-        editBtn.className = "edit"
-        editBtn.setAttribute("edit-service-id", hairservice.id);
-        editBtn.innerText = "Edit Service"
+        // editBtn.className = "edit"
+        // editBtn.setAttribute("edit-service-id", hairservice.id);
+        // editBtn.innerText = "Edit Service"
         li.appendChild(deleteBtn)
-        li.appendChild(editBtn)
+        // li.appendChild(editBtn)
         ul.appendChild(li)
     })
 };
@@ -106,11 +116,29 @@ function serviceFormSubmission(e){
     })
     .then(resp => resp.json())
     .then(service => {
+            Hairservice.create(service.id, service.service_name, service.price, service.hairstylist_id)
+            let hairstylist = Hairstylist.all.find(stylist => stylist.id == service.hairstylist_id)
+            // debugger
+            stylistCards(hairstylist)
+
+
+
+
+
+
+        // .then(program => {
+        //     debugger;
+        //     Program.create(program.id, program.title, program.split, program.length, program.goal, program.weeklyVolume, program.workoutsPerWeek, program.startdate)
+        //     displayProgram(Program.all.last)
+        // })
         // debugger
-        let s = new Hairservice(service.id, service.name, service.price, service.hairstylist_id)
-        // let hairstylist = Hairstylist.find_by_id(service.hairstylist_id)
-        this.location.reload();
+        // let s = new Hairservice(service.id, service.service_name, service.price, service.hairstylist_id)
+        // debugger
+        // let hairstylist = Hairstylist.find(s.hairstylist_id)
+        // console.log(stylistCards(Hairstylist.all));
+        // this.location.reload();
     })
+    // console.log("hey there", this)
 }
 
 function deleteService(id){
