@@ -74,7 +74,7 @@ function createServiceForm(hairstylist){
     <form>
         Service Name: <input type="text id="service_name"> <br>
         Price: $<input type="integer" id="price"><br>
-        Stylist Id: <input type="integer" id="hairstylist_id" value="${hairstylist.id}"><br>            
+        Stylist Id: <input type="integer" id="hairstylist_id" value="${hairstylist.id}" disabled><br>            
         <input type="submit" value="Add Service">
     </form>
     <br>
