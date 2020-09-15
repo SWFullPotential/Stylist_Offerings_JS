@@ -18,8 +18,8 @@ function fetchStylists() {
     .then(resp => resp.json())
     // .then(object => object.forEach(hairstylist => stylistCards(hairstylist)))
     .then(object => object.forEach(stylist => {
-        let hairStylist = Hairstylist.create(stylist.id, stylist.name, stylist.year_licensed)
-        stylistCards(hairStylist)
+        // let hairStylist = Hairstylist.create(stylist.id, stylist.name, stylist.year_licensed)
+        stylistCards(stylist)
     }))
     // .then(object => 
     //     {
@@ -38,7 +38,7 @@ function stylistCards(hairstylist){
     div.id = hairstylist.id
     div.setAttribute("data-id", hairstylist.id)
     let stylistName = document.createElement('h3')
-    stylistName.textContent = `${hairstylist.id} - ${hairstylist.name}` 
+    stylistName.textContent = `${hairstylist.name}, licensed since: ${hairstylist.year_licensed}.` 
     let ul = document.createElement('ul')
     servicesLi(hairstylist, ul)
     let serviceDiv = document.createElement('div')
@@ -84,7 +84,7 @@ function createServiceForm(hairstylist){
     <form id="add-service-form">
         Service Name: <input type="text" id="service_name"> <br>
         Price: $<input type="integer" id="price"><br>
-        Stylist Id: <input type="integer" id="hairstylist_id" value="${hairstylist.id}" disabled><br>            
+        <input type="hidden" id="hairstylist_id" value="${hairstylist.id}"><br>            
         <input type="submit" value="Add Service">
     </form>
     <br>
