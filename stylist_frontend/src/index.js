@@ -81,7 +81,7 @@ function createServiceForm(hairstylist){
     `
     serviceForm.addEventListener('submit', serviceFormSubmission)
 }
-
+//serviceFormSubmission needs help 
 function serviceFormSubmission(){
     e.preventDefault()
     let name = document.getElementById("service_name").value
