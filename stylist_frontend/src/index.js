@@ -3,6 +3,8 @@ const HAIRSTYLIST_URL = `${BASE_URL}/hairstylists`
 const SERVICES_URL = `${BASE_URL}/hairservices`
 
 const main = document.querySelector('main')
+const sName = () => document.querySelector('input#service_name')
+const sPrice = () => document.querySelector('input#price')
 
 document.addEventListener('DOMContentLoaded', (e) => {
     fetchStylists()
@@ -58,7 +60,6 @@ function servicesLi(hairstylist, ul){
         ul.appendChild(li)
     })
 };
-
 function createServiceForm(hairstylist){
     let serviceDiv = document.getElementById("service-form")
     serviceDiv.innerHTML +=
@@ -102,11 +103,11 @@ function serviceFormSubmission(e){
             let hs = Hairservice.create(service.id, service.service_name, service.price, service.hairstylist_id)
             let hairstylist = Hairstylist.all.find(stylist => stylist.id == service.hairstylist_id)
             hairstylist.hairservices.push(hs)
-            // let ul = document.querySelector(`div#${hairstylist.id} ul`)
             let div = document.getElementById(`${hairstylist.id}`)
             let ul = div.querySelector(`ul`)
 
             servicesLi(hairstylist, ul);
+            resetInputs();
     })
 }
 
@@ -127,3 +128,8 @@ function deleteService(id){
     })
     this.location.reload();
 };
+
+function resetInputs() {
+    sName().value = "";
+    sPrice().value = "";
+  }
