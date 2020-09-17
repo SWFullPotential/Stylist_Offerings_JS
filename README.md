@@ -1,0 +1,9 @@
+
+study:
+
+
+hoisting 
+
+scope 
+
+closures
