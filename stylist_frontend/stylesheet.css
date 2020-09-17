@@ -1,0 +1,54 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.829);
+}
+
+h1 {
+    font-family: 'Lobster', cursive;;
+}
+h2 {
+    font-family: 'Lobster', cursive;;
+    
+}
+h3 {
+    font-family: 'Lobster', cursive;;    
+}
+
+li {
+    padding: 5px;
+}
+
+header {
+    margin: 2% 35%;
+    
+}
+
+body {
+    
+    
+}
+
+main {
+    /* column-count: 3; */
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("stylist_image.jpg");
+    background-size: cover;
+}
+
+.button {
+    
+}
+.card {
+    /* position: center; */
+    border: 2px groove black;
+    border-radius: 2em;
+    padding: 50px ;
+    margin: 5% 25%;
+}
+#service-form {
+    align-items: center;
+    /* justify-content: center; */
+
+}
+

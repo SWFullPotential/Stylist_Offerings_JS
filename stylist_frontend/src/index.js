@@ -26,7 +26,7 @@ function stylistCards(hairstylist){
     div.id = hairstylist.id
     div.setAttribute("data-id", hairstylist.id)
     let stylistName = document.createElement('h2')
-    stylistName.textContent = `${hairstylist.name}, licensed since: ${hairstylist.year_licensed}.` 
+    stylistName.textContent = `Hairstylist: ${hairstylist.name}, licensed since ${hairstylist.year_licensed}.` 
     let servicesOffered = document.createElement('h3')
     servicesOffered.textContent = "Services Offered:"
     let ul = document.createElement('ul')
@@ -51,8 +51,7 @@ function servicesLi(hairstylist, ul){
         li.textContent = `${hairservice.service_name} $${hairservice.price}`
         deleteBtn.className = "delete"
         deleteBtn.setAttribute("data-service-id", hairservice.id);
-        deleteBtn.innerText = "Delete Service"
-        //add event listener. 
+        deleteBtn.innerText = "Delete Service" 
         deleteBtn.addEventListener('click', () =>{
             deleteService(deleteBtn.getAttribute("data-service-id"))
         })
