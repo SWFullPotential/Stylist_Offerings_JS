@@ -1,7 +1,7 @@
 *{
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    color: rgba(0, 0, 0, 0.829);
+    color: rgba(24, 4, 244);
 }
 
 h1 {
@@ -24,15 +24,10 @@ header {
     
 }
 
-body {
-    
-    
-}
-
 main {
     /* column-count: 3; */
     font-family: 'Montserrat', sans-serif;
-    background-image: url("stylist_image.jpg");
+    background-image: url("hair_did.jpeg");
     background-size: cover;
 }
 
@@ -40,7 +35,8 @@ main {
     
 }
 .card {
-    /* position: center; */
+
+    background-color: rgba(225, 225, 225, 0.5);;
     border: 2px groove black;
     border-radius: 2em;
     padding: 50px ;
