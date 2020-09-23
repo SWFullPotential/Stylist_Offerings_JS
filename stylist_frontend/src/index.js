@@ -47,7 +47,6 @@ function servicesLi(hairstylist, ul){
     hairstylist.hairservices.forEach(hairservice => {
         let li = document.createElement('li')
         let deleteBtn = document.createElement('button')
-        let editBtn = document.createElement('button')
         li.textContent = `${hairservice.service_name} $${hairservice.price}`
         deleteBtn.className = "delete"
         deleteBtn.setAttribute("data-service-id", hairservice.id);
