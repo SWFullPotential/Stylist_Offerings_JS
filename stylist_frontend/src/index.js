@@ -58,24 +58,41 @@ function stylistCards(hairstylist){
     createServiceForm(hairstylist)
 };
 
+// function sortAlpha(ul) {
+//     Hairservices.sort(function(a, b){return a-b})
+// }
+
 function orderPrice(){
-    // debugger
-    Hairservice.all = []
+    // custom route order price...
     let ul = document.querySelector(`ul`)
     ul.innerHTML = ""
     fetch(SERVICES_URL + '/ordered')
     .then(resp => resp.json())
     
     .then(obj => {
+        // debugger
+        let hId = obj[0].hairstylist_id
+        let hairstylist = Hairstylist.all.find(stylist => stylist.id == hId)
+        // hairstylist.hairservices = hairstylist.hairservices.sort((a, b) => a.price-b.price)
+        // debugger
+        hairstylist.hairservices = []
         obj.forEach(service => {
             let hs = Hairservice.create(service.id, service.service_name, service.price, service.hairstylist_id)
-            let hairstylist = Hairstylist.all.find(stylist => stylist.id == service.hairstylist_id)
             hairstylist.hairservices.push(hs)
-            let div = document.getElementById(`${hairstylist.id}`)
+            // debugger
+            // let div = document.getElementById(`${hairstylist.id}`)
             servicesLi(hairstylist, ul);
+            // service.price.sort(function(a, b){a-b})
+
         })
     })
-    // debugger
+//JS sort on page from existing list....
+//  let price = Hairservices.
+//     Hairservices.all.sort(function(a, b){return a-b})
+
+// Hairservice.price.filter()
+
+// age >= document.getElementById("ageToCheck").value;
 }
 
 function servicesLi(hairstylist, ul){
