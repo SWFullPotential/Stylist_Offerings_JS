@@ -47,6 +47,7 @@ function servicesLi(hairstylist, ul){
     hairstylist.hairservices.forEach(hairservice => {
         let li = document.createElement('li')
         let deleteBtn = document.createElement('button')
+        li.id = hairservice.id
         li.textContent = `${hairservice.service_name} $${hairservice.price}`
         deleteBtn.className = "delete"
         deleteBtn.setAttribute("data-service-id", hairservice.id);
@@ -118,13 +119,23 @@ function deleteService(id){
             "Accept": "application/json"
         }
     })
-    .then(function(resp){
-        return resp.json();
-    })
-    .then(function(object){
-        let service = document.getElementById(object.id)
-    })
-    this.location.reload();
+    // .then(function(resp){
+    //     return resp.json();
+    // })
+    // .then(function(object){
+    //     let service = document.getElementById(object.id)
+    // })
+    // let hairstylist = Hairstylist.all.find(stylist => stylist.id == id)
+    // let ul = document.querySelector(`ul`)s
+
+    // servicesLi(hairstylist, ul)
+    let service = document.getElementById(id)
+    service.remove();
+
+
+    //matches = document.querySelectorAll("iframe[data-src]");
+
+    // this.location.reload();
 };
 
 function resetInputs() {
