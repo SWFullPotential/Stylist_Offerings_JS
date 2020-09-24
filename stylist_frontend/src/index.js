@@ -1,3 +1,4 @@
+//globally declared variables --global scope 
 const BASE_URL = "http://localhost:3000"
 const HAIRSTYLIST_URL = `${BASE_URL}/hairstylists`
 const SERVICES_URL = `${BASE_URL}/hairservices`
@@ -21,6 +22,7 @@ function fetchStylists() {
 };
 
 function stylistCards(hairstylist){
+    //local scope to the function
     let div = document.createElement('div')
     div.className = "card"
     div.id = hairstylist.id
@@ -45,6 +47,7 @@ function stylistCards(hairstylist){
 function servicesLi(hairstylist, ul){
     ul.innerHTML = ""
     hairstylist.hairservices.forEach(hairservice => {
+        //block scope 
         let li = document.createElement('li')
         let deleteBtn = document.createElement('button')
         li.textContent = `${hairservice.service_name} $${hairservice.price}`
@@ -98,6 +101,7 @@ function serviceFormSubmission(e){
     })
     .then(resp => resp.json())
     .then(service => {
+            //block scope??
             let hs = Hairservice.create(service.id, service.service_name, service.price, service.hairstylist_id)
             let hairstylist = Hairstylist.all.find(stylist => stylist.id == service.hairstylist_id)
             hairstylist.hairservices.push(hs)
