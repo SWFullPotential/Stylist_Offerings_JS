@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # get '/hairservices/ordered', to: 'hairservices#ordered'
+  get '/hairservices/ordered', to: 'hairservices#ordered'
   
   resources :hairservices
   resources :hairstylists

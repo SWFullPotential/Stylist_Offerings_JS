@@ -24,10 +24,10 @@ class HairservicesController < ApplicationController
     end
   end
 
-  # def ordered 
-  #   @hairservices = Hairservice.order(price: :asc) 
-  #   render json: @hairservices
-  # end
+  def ordered 
+    @hairservices = Hairservice.order(price: :asc) 
+    render json: @hairservices
+  end
 
   # PATCH/PUT /hairservices/1
   def update

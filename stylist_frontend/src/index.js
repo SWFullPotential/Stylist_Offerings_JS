@@ -3,6 +3,7 @@ const BASE_URL = "http://localhost:3000"
 const HAIRSTYLIST_URL = `${BASE_URL}/hairstylists`
 const SERVICES_URL = `${BASE_URL}/hairservices`
 
+
 const main = document.querySelector('main')
 const sName = () => document.querySelector('input#service_name')
 const sPrice = () => document.querySelector('input#price')
@@ -36,13 +37,46 @@ function stylistCards(hairstylist){
     let serviceDiv = document.createElement('div')
     serviceDiv.id = "service-form"
     serviceDiv.setAttribute("stylist-id", hairstylist.id)
+
+    let priceBtn = document.createElement('button')
+    priceBtn.className = "ordered"
+    priceBtn.innerText = "Order by Price"
+    priceBtn.setAttribute("services", hairstylist.hairservices)
+    priceBtn.addEventListener('click', () => {
+
+        orderPrice(priceBtn.getAttribute("services"))
+    })
+
+
+
     div.appendChild(stylistName)
     div.appendChild(serviceDiv)
     div.appendChild(servicesOffered)
+    div.appendChild(priceBtn)
     div.appendChild(ul)
     main.appendChild(div)
     createServiceForm(hairstylist)
 };
+
+function orderPrice(){
+    // debugger
+    Hairservice.all = []
+    let ul = document.querySelector(`ul`)
+    ul.innerHTML = ""
+    fetch(SERVICES_URL + '/ordered')
+    .then(resp => resp.json())
+    
+    .then(obj => {
+        obj.forEach(service => {
+            let hs = Hairservice.create(service.id, service.service_name, service.price, service.hairstylist_id)
+            let hairstylist = Hairstylist.all.find(stylist => stylist.id == service.hairstylist_id)
+            hairstylist.hairservices.push(hs)
+            let div = document.getElementById(`${hairstylist.id}`)
+            servicesLi(hairstylist, ul);
+        })
+    })
+    // debugger
+}
 
 function servicesLi(hairstylist, ul){
     ul.innerHTML = ""
@@ -61,6 +95,7 @@ function servicesLi(hairstylist, ul){
         ul.appendChild(li)
     })
 };
+
 function createServiceForm(hairstylist){
     let serviceDiv = document.getElementById("service-form")
     serviceDiv.innerHTML +=
