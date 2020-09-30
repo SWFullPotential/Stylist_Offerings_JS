@@ -104,7 +104,7 @@ function serviceFormSubmission(e){
             hairstylist.hairservices.push(hs)
             let div = document.getElementById(`${hairstylist.id}`)
             let ul = div.querySelector(`ul`)
-
+            // debugger
             servicesLi(hairstylist, ul);
             resetInputs();
     })
@@ -113,29 +113,13 @@ function serviceFormSubmission(e){
 function deleteService(id){
     let serviceId = `${SERVICES_URL}/${id}`
     fetch(serviceId, {
-        method: "DELETE", 
-        headers:{
-            "Content-Type": "application/json", 
-            "Accept": "application/json"
-        }
+        method: "DELETE"
     })
-    // .then(function(resp){
-    //     return resp.json();
-    // })
-    // .then(function(object){
-    //     let service = document.getElementById(object.id)
-    // })
-    // let hairstylist = Hairstylist.all.find(stylist => stylist.id == id)
-    // let ul = document.querySelector(`ul`)s
-
-    // servicesLi(hairstylist, ul)
+    Hairservice.all.find(service => service.id == id).removeService();
+    
     let service = document.getElementById(id)
     service.remove();
 
-
-    //matches = document.querySelectorAll("iframe[data-src]");
-
-    // this.location.reload();
 };
 
 function resetInputs() {

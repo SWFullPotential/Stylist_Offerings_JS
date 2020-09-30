@@ -12,5 +12,12 @@ class Hairservice {
             Hairservice.all.push(service)
             return service
     }
+    
+    removeService() {
+        let hairstylist = Hairstylist.all.find(stylist => stylist.id == this.hairstylist_id)
+        hairstylist.hairservices = hairstylist.hairservices.filter(service => service.id != this.id)
+        Hairservice.all = Hairservice.all.filter(service => service.id != this.id)
 
-}
+    }
+
+}ß
