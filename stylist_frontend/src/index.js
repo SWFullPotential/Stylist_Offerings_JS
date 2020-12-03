@@ -159,7 +159,6 @@ function serviceFormSubmission(e) {
   })
     .then((resp) => resp.json())
     .then((service) => {
-      //block scope??
       let hs = Hairservice.create(
         service.id,
         service.service_name,
