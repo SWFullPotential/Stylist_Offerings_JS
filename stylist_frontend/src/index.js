@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+//globally declared variables --global scope
+>>>>>>> b342d87a47da638f07250bb2b66a471905b78e0e
 const BASE_URL = "http://localhost:3000";
 const HAIRSTYLIST_URL = `${BASE_URL}/hairstylists`;
 const SERVICES_URL = `${BASE_URL}/hairservices`;
@@ -28,6 +32,10 @@ function fetchStylists() {
 }
 
 function stylistCards(hairstylist) {
+<<<<<<< HEAD
+=======
+  //local scope to the function
+>>>>>>> b342d87a47da638f07250bb2b66a471905b78e0e
   let div = document.createElement("div");
   div.className = "card";
   div.id = hairstylist.id;
@@ -41,6 +49,10 @@ function stylistCards(hairstylist) {
   let serviceDiv = document.createElement("div");
   serviceDiv.id = "service-form";
   serviceDiv.setAttribute("stylist-id", hairstylist.id);
+<<<<<<< HEAD
+=======
+
+>>>>>>> b342d87a47da638f07250bb2b66a471905b78e0e
   let priceBtn = document.createElement("button");
   priceBtn.className = "ordered";
   priceBtn.innerText = "Order by Price";
@@ -48,6 +60,10 @@ function stylistCards(hairstylist) {
   priceBtn.addEventListener("click", () => {
     orderPrice(priceBtn.getAttribute("services"));
   });
+<<<<<<< HEAD
+=======
+
+>>>>>>> b342d87a47da638f07250bb2b66a471905b78e0e
   div.appendChild(stylistName);
   div.appendChild(serviceDiv);
   div.appendChild(servicesOffered);
@@ -57,6 +73,13 @@ function stylistCards(hairstylist) {
   createServiceForm(hairstylist);
 }
 
+<<<<<<< HEAD
+=======
+// function sortAlpha(ul) {
+//     Hairservices.sort(function(a, b){return a-b})
+// }
+
+>>>>>>> b342d87a47da638f07250bb2b66a471905b78e0e
 function orderPrice() {
   // custom route order price...
   let ul = document.querySelector(`ul`);
@@ -93,9 +116,17 @@ function orderPrice() {
 
   // age >= document.getElementById("ageToCheck").value;
 }
+<<<<<<< HEAD
 function servicesLi(hairstylist, ul) {
   ul.innerHTML = "";
   hairstylist.hairservices.forEach((hairservice) => {
+=======
+
+function servicesLi(hairstylist, ul) {
+  ul.innerHTML = "";
+  hairstylist.hairservices.forEach((hairservice) => {
+    //block scope
+>>>>>>> b342d87a47da638f07250bb2b66a471905b78e0e
     let li = document.createElement("li");
     let deleteBtn = document.createElement("button");
     li.id = hairservice.id;
@@ -110,9 +141,17 @@ function servicesLi(hairstylist, ul) {
     ul.appendChild(li);
   });
 }
+<<<<<<< HEAD
 function createServiceForm(hairstylist) {
   let serviceDiv = document.getElementById("service-form");
   serviceDiv.innerHTML += `
+=======
+
+function createServiceForm(hairstylist) {
+  let serviceDiv = document.getElementById("service-form");
+  serviceDiv.innerHTML += `
+
+>>>>>>> b342d87a47da638f07250bb2b66a471905b78e0e
     <h4>Add Service:</h4>
     <form id="add-service-form">
         Service Name: <input type="text" id="service_name"> <br>
@@ -161,7 +200,11 @@ function serviceFormSubmission(e) {
       hairstylist.hairservices.push(hs);
       let div = document.getElementById(`${hairstylist.id}`);
       let ul = div.querySelector(`ul`);
+<<<<<<< HEAD
       // debugger
+=======
+
+>>>>>>> b342d87a47da638f07250bb2b66a471905b78e0e
       servicesLi(hairstylist, ul);
       resetInputs();
     });
