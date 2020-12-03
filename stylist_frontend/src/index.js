@@ -15,7 +15,7 @@ function fetchStylists() {
     .then((resp) => resp.json())
     .then((object) =>
       object.forEach((stylist) => {
-        let hairStylist = Hairstylist.create(
+        const hairStylist = Hairstylist.create(
           stylist.id,
           stylist.name,
           stylist.year_licensed,
