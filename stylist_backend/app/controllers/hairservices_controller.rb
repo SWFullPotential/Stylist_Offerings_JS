@@ -41,6 +41,7 @@ class HairservicesController < ApplicationController
   # DELETE /hairservices/1
   def destroy
     @hairservice.destroy
+    render json: @hairservice
   end
 
   private

@@ -124,6 +124,7 @@ function servicesLi(hairstylist, ul) {
 function createServiceForm(hairstylist) {
   let serviceDiv = document.getElementById("service-form");
   serviceDiv.innerHTML += `
+
     <h4>Add Service:</h4>
     <form id="add-service-form">
         Service Name: <input type="text" id="service_name"> <br>
@@ -178,23 +179,6 @@ function serviceFormSubmission(e) {
     });
 }
 
-// function deleteService(id) {
-//   let serviceId = `${SERVICES_URL}/${id}`;
-//   fetch(serviceId, {
-//     method: "DELETE",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//     },
-//   })
-//     .then(function (resp) {
-//       return resp.json();
-//     })
-//     .then(function (object) {
-//       let service = document.getElementById(object.id);
-//     });
-//   this.location.reload();
-// }
 function deleteService(id) {
   let serviceId = `${SERVICES_URL}/${id}`;
   fetch(serviceId, {

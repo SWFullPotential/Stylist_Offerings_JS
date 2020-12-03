@@ -7,11 +7,13 @@ class Hairservice {
     this.hairstylist_id = hairstylist_id;
   }
 
+
   static create(id, service_name, price, hairstylist_id) {
     let service = new Hairservice(id, service_name, price, hairstylist_id);
     Hairservice.all.push(service);
     return service;
   }
+
   removeService() {
     let hairstylist = Hairstylist.all.find(
       (stylist) => stylist.id == this.hairstylist_id
