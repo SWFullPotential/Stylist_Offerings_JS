@@ -108,6 +108,7 @@ function servicesLi(hairstylist, ul) {
     //block scope
     let li = document.createElement("li");
     let deleteBtn = document.createElement("button");
+    li.id = hairservice.id;
     li.textContent = `${hairservice.service_name} $${hairservice.price}`;
     deleteBtn.className = "delete";
     deleteBtn.setAttribute("data-service-id", hairservice.id);
@@ -177,22 +178,32 @@ function serviceFormSubmission(e) {
     });
 }
 
+// function deleteService(id) {
+//   let serviceId = `${SERVICES_URL}/${id}`;
+//   fetch(serviceId, {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Accept: "application/json",
+//     },
+//   })
+//     .then(function (resp) {
+//       return resp.json();
+//     })
+//     .then(function (object) {
+//       let service = document.getElementById(object.id);
+//     });
+//   this.location.reload();
+// }
 function deleteService(id) {
   let serviceId = `${SERVICES_URL}/${id}`;
   fetch(serviceId, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  })
-    .then(function (resp) {
-      return resp.json();
-    })
-    .then(function (object) {
-      let service = document.getElementById(object.id);
-    });
-  this.location.reload();
+  });
+  Hairservice.all.find((service) => service.id == id).removeService();
+
+  let service = document.getElementById(id);
+  service.remove();
 }
 
 function resetInputs() {
